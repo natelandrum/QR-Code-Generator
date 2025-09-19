@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>QR Code Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator/qrcode.js"></script>
+</head>
+<body>
+    <div class="qr-container">
+        <h1 class="qr-title">Wi-Fi QR Code Generator</h1>
+        <input id="ssid" class="qr-input" type="text" placeholder="SSID / Wi-Fi Name" aria-label="Text input">
+        <input id="password" class="qr-input" type="text" placeholder="Password" aria-label="Text input">
+        <div class="qr-row">
+            <div class="checkbox-container">
+                <label for="hidden-ssid" class="qr-label">Hidden Wi-Fi:</label>
+                <input type="checkbox" name="hidden-ssid" id="hidden-ssid" class="qr-checkbox">
+            </div>
+            <select id="protocol-select" class="qr-select" aria-label="QR code type">
+                <option value="">Choose Security Protocol</option>
+                <option value="WEP">WEP</option>
+                <option value="WPA2">WPA/WPA2</option>
+                <option value="WPA3">WPA3</option>
+                <option value="nopass">nopass</option>
+            </select>
+        </div>
+        <div class="qr-error-correction">
+            <span class="qr-error-label">Error Correction:</span>
+            <button type="button" class="qr-error-option" id="error-correction-l" data-value="L">L</button>
+            <button type="button" class="qr-error-option selected" id="error-correction-m" data-value="M">M</button>
+            <button type="button" class="qr-error-option" id="error-correction-q" data-value="Q">Q</button>
+            <button type="button" class="qr-error-option" id="error-correction-h" data-value="H">H</button>
+        </div>
+        <button type="button" class="qr-generate-btn" id="generate-btn">Generate QR Code</button>
+        <div class="qr-preview">
+            <canvas id="qr-canvas" width="800" height="800" aria-label="Generated QR code"></canvas>
+            <div class="preview-text">QR  Area</div>
+        </div>
+
+        <div class="qr-download-row">
+            <button type="button" class="qr-download-btn" id="download-png">Download PNG</button>
+            <button type="button" class="qr-download-btn" id="download-svg">Download SVG</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
