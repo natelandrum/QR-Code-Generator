@@ -14,6 +14,7 @@ body {
 
 .checkbox-container {
     display: flex;
+    align-items: center;
 }
 
 .qr-container {
@@ -24,7 +25,6 @@ body {
     width: 400px;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .qr-title {
@@ -58,7 +58,7 @@ body {
 .qr-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     margin-bottom: 16px;
 }
@@ -112,6 +112,56 @@ body {
     border-color: #3b82f6;
 }
 
+.qr-type-container,
+.qr-input-container,
+.qr-preview-container {
+
+    border: solid 1.5px #e3e8f0;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 18px;
+}
+
+.qr-type-selection {
+    display: flex;
+    width: 100%;
+    gap: 18px;
+}
+
+.qr-type-option {
+    font-size: 1.1rem;
+    box-sizing: border-box;
+    color: #1a2340;
+    border: none;
+    background-color: #dfdfe4;
+    border-radius: 12px;
+    padding: 5px 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.qr-type-label,
+.qr-input-label,
+.qr-preview-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a2340;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dfdfe4;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+.input-data label {
+    font-size: 1rem;
+    color: #1a2340;
+    font-weight: 500;
+}
+
 .qr-error-correction {
     display: flex;
     align-items: center;
@@ -119,12 +169,14 @@ body {
     margin-bottom: 18px;
     width: 100%;
 }
+
 .qr-error-label {
     font-size: 1rem;
     color: #1a2340;
     font-weight: 500;
     margin-right: 8px;
 }
+
 .qr-error-option {
     font-size: 1.1rem;
     color: #1a2340;
@@ -140,7 +192,8 @@ body {
     justify-content: center;
     transition: background 0.2s, color 0.2s;
 }
-.qr-error-option.selected {
+.qr-error-option.selected,
+.qr-type-option.selected {
     background: #2563eb;
     color: #fff;
 }
@@ -173,22 +226,15 @@ body {
     font-weight: 700;
     color: #1a2340;
     margin-bottom: 10px;
-    text-align: center;
 }
 
 .qr-preview {
     width: 220px;
     height: 220px;
-    border: 1.5px solid #e3e8f0;
     border-radius: 16px;
-    background: #f7faff;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0;
-    overflow: hidden;
+    margin: 1rem auto;
+    margin-bottom: 2rem;
 }
 
 .preview-text {
@@ -203,9 +249,7 @@ body {
 }
 
 #qr-canvas {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 1rem;
     width: 220px;
     height: 220px;
 }

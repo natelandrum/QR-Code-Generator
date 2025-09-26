@@ -16,6 +16,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         });
     });
+
+    const typeOptions = document.querySelectorAll('.qr-type-option');
+    const typeInputs = document.querySelectorAll('[class*="input-type"]');
+    
+    typeOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            typeOptions.forEach(opt => {
+                opt.classList.remove('selected');
+                opt.style.animation = 'none';
+            });
+            typeInputs.forEach(input => {
+                input.classList.add('hidden');
+            });
+
+            const selectedType = this.dataset.value;
+            const inputGroup = document.querySelector(`.${selectedType}-input-type`);
+            inputGroup.classList.remove('hidden');
+
+            this.classList.add('selected');
+            this.style.animation = 'pulse 0.3s ease-in-out';
+
+            setTimeout(() => {
+                this.style.animation = 'none';
+            }, 300);
+        });
+    });
 });
 
 document.querySelector('.qr-select').addEventListener('change', function() {
@@ -23,18 +49,29 @@ document.querySelector('.qr-select').addEventListener('change', function() {
 }, { once: true });
 
 document.getElementById('generate-btn').addEventListener('click', function() {
+    let qrString = '';
+    const errorCorrection = document.querySelector('.qr-error-option.selected').dataset.value;
+    switch (document.querySelector('.qr-type-option.selected').dataset.value) {
+        case 'wifi':
+            qrString = generateWiFiQR();
+            break;
+        case 'url':
+            qrString = generateUrlQR();
+            break;
+        case 'text':
+            qrString = generateTextQR();
+            break;
+        case 'contact':
+            qrString = generateContactQR();
+            break;
+        default:
+            alert('Please select a QR code type.');
+    }
     document.querySelector('.preview-text').classList.add('hidden');
-    const ssid = document.getElementById('ssid').value;
-    const password = document.getElementById('password').value;
-    const hidden = document.getElementById('hidden-ssid').checked;
-    const security = document.getElementById('protocol-select').value;
-    const errorCorrection = document.querySelector('.qr-error-option.selected').textContent;
-
-    const wifiString = `WIFI:T:${security};S:${ssid};${security !== "nopass" ? "P:" + password + ";" : ""}${hidden ? "H:true;" : ""};`;
 
     // --- Generate QR ---
     const qr = qrcode(0, errorCorrection);
-    qr.addData(wifiString);
+    qr.addData(qrString);
     qr.make();
 
     const canvas = document.getElementById("qr-canvas");
@@ -72,6 +109,40 @@ function drawQR(qr, canvas) {
             }
         }
     }
+}
+
+function generateWiFiQR() {
+    const ssid = document.getElementById('ssid').value;
+    const password = document.getElementById('password').value;
+    const hidden = document.getElementById('hidden-ssid').checked;
+    const security = document.getElementById('protocol-select').value;
+
+    const wifiString = `WIFI:T:${security};S:${ssid};${security !== "nopass" ? "P:" + password + ";" : ""}${hidden ? "H:true;" : ""};`;
+
+    return wifiString;
+}
+
+function generateUrlQR() {
+    const url = document.getElementById('url').value;
+    const urlString = `URL:${url};`;
+
+    return urlString;
+}
+
+function generateTextQR() {
+    const text = document.getElementById('text').value;
+    const textString = `TEXT:${text};`;
+
+    return textString;
+}
+
+function generateContactQR() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const contactString = `BEGIN:VCARD\nVERSION:3.0\nN:${name}\nEMAIL:${email}\nTEL:${phone}\nEND:VCARD`;
+
+    return contactString;
 }
 
 document.getElementById("download-png").addEventListener("click", function() {

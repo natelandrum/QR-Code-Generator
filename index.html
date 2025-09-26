@@ -9,21 +9,57 @@
 </head>
 <body>
     <div class="qr-container">
-        <h1 class="qr-title">Wi-Fi QR Code Generator</h1>
-        <input id="ssid" class="qr-input" type="text" placeholder="SSID / Wi-Fi Name" aria-label="Text input">
-        <input id="password" class="qr-input" type="text" placeholder="Password" aria-label="Text input">
-        <div class="qr-row">
-            <div class="checkbox-container">
-                <label for="hidden-ssid" class="qr-label">Hidden Wi-Fi:</label>
-                <input type="checkbox" name="hidden-ssid" id="hidden-ssid" class="qr-checkbox">
+        <h1 class="qr-title">QR Code Generator</h1>
+        <div class="qr-type-container">
+            <h2 class="qr-type-label">QR Code Type:</h2>
+            <div class="qr-type-selection">
+                <button type="button" class="qr-type-option selected" id="qr-type-wifi" data-value="wifi">Wi-Fi</button>
+                <button type="button" class="qr-type-option" id="qr-type-url" data-value="url">URL</button>
+                <button type="button" class="qr-type-option" id="qr-type-text" data-value="text">Text</button>
+                <button type="button" class="qr-type-option" id="qr-type-contact" data-value="contact">Contact</button>
             </div>
-            <select id="protocol-select" class="qr-select" aria-label="QR code type">
-                <option value="">Choose Security Protocol</option>
-                <option value="WEP">WEP</option>
-                <option value="WPA2">WPA/WPA2</option>
-                <option value="WPA3">WPA3</option>
-                <option value="nopass">nopass</option>
-            </select>
+
+        </div>
+        <div class="qr-input-container">
+            <div class="input-data">
+                <div class="qr-input-label">Input Data:</div>
+                <div class="wifi-input-type">
+                    <label for="ssid">Network Name (SSID):</label>
+                    <input id="ssid" class="qr-input" type="text" aria-label="SSID input">
+                    <label for="password">Password:</label>
+                    <input id="password" class="qr-input" type="text" aria-label="Password input">
+
+                    <div class="qr-row">
+                        <select id="protocol-select" class="qr-select" aria-label="QR code type">
+                            <option value="">Choose Encryption Type</option>
+                            <option value="WEP">WEP</option>
+                            <option value="WPA2">WPA/WPA2</option>
+                            <option value="WPA3">WPA3</option>
+                            <option value="nopass">nopass</option>
+                        </select>
+                        <div class="checkbox-container">
+                            <label for="hidden-ssid" class="qr-label">Hidden Wi-Fi:</label>
+                            <input type="checkbox" name="hidden-ssid" id="hidden-ssid" class="qr-checkbox">
+                        </div>
+                    </div>
+                </div>
+                <div class="url-input-type hidden">
+                    <label for="url">URL:</label>
+                    <input id="url" class="qr-input hidden" type="text" aria-label="URL input">
+                </div>
+                <div class="text-input-type hidden">
+                    <label for="text">Text:</label>
+                    <input id="text" class="qr-input hidden" type="text" aria-label="Text input">
+                </div>
+                <div class="contact-input-type hidden">
+                    <label for="name">Name:</label>
+                    <input id="name" class="qr-input hidden" type="text" aria-label="Name input">
+                    <label for="email">Email:</label>
+                    <input id="email" class="qr-input hidden" type="text" aria-label="Email input">
+                    <label for="phone">Phone Number:</label>
+                    <input id="phone" class="qr-input hidden" type="text" aria-label="Phone number input">
+                </div>
+            </div>
         </div>
         <div class="qr-error-correction">
             <span class="qr-error-label">Error Correction:</span>
@@ -33,9 +69,12 @@
             <button type="button" class="qr-error-option" id="error-correction-h" data-value="H">H</button>
         </div>
         <button type="button" class="qr-generate-btn" id="generate-btn">Generate QR Code</button>
-        <div class="qr-preview">
-            <canvas id="qr-canvas" width="800" height="800" aria-label="Generated QR code"></canvas>
-            <div class="preview-text">QR  Area</div>
+        <div class="qr-preview-container">
+            <div class="qr-preview-label">QR Code Preview:</div>
+            <div class="qr-preview">
+                <canvas id="qr-canvas" width="800" height="800" aria-label="Generated QR code"></canvas>
+                <div class="preview-text">QR  Area</div>
+            </div>
         </div>
 
         <div class="qr-download-row">
