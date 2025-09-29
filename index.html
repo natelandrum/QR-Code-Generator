@@ -11,18 +11,30 @@
     <div class="qr-container">
         <h1 class="qr-title">QR Code Generator</h1>
         <div class="qr-type-container">
-            <h2 class="qr-type-label">QR Code Type:</h2>
+            <p class="qr-type-label">QR Code Type</p>
             <div class="qr-type-selection">
-                <button type="button" class="qr-type-option selected" id="qr-type-wifi" data-value="wifi">Wi-Fi</button>
-                <button type="button" class="qr-type-option" id="qr-type-url" data-value="url">URL</button>
-                <button type="button" class="qr-type-option" id="qr-type-text" data-value="text">Text</button>
-                <button type="button" class="qr-type-option" id="qr-type-contact" data-value="contact">Contact</button>
+                <button type="button" class="qr-type-option selected" id="qr-type-wifi" data-value="wifi">
+                    <img src="public/wifi.svg" alt="Wi-Fi svg by Noah Jacobus" height="15">
+                    &nbsp;Wi-Fi
+                </button>
+                <button type="button" class="qr-type-option" id="qr-type-url" data-value="url">
+                    <img src="public/url.svg" alt="URL svg by Catalin Fertu" height="15">
+                    &nbsp;URL
+                </button>
+                <button type="button" class="qr-type-option" id="qr-type-text" data-value="text">
+                    <img src="public/text.svg" alt="Text svg by Mariusz Ostrowski" height="15">
+                    &nbsp;Text
+                </button>
+                <button type="button" class="qr-type-option" id="qr-type-contact" data-value="contact">
+                    <img src="public/contact.svg" alt="Contact svg by SVG Sith" height="15">
+                    &nbsp;Contact
+                </button>
             </div>
 
         </div>
         <div class="qr-input-container">
             <div class="input-data">
-                <div class="qr-input-label">Input Data:</div>
+                <p class="qr-input-label">Input Data</p>
                 <div class="wifi-input-type">
                     <label for="ssid">Network Name (SSID):</label>
                     <input id="ssid" class="qr-input" type="text" aria-label="SSID input">
@@ -59,27 +71,41 @@
                     <label for="phone">Phone Number:</label>
                     <input id="phone" class="qr-input hidden" type="text" aria-label="Phone number input">
                 </div>
+                <div class="logo-image">
+                    <label for="logo-upload" class="qr-image-label">Upload Logo (optional):</label>
+                    <input type="file" id="logo-upload" class="qr-input" accept="image/*" aria-label="Upload logo image">
+                </div>
             </div>
         </div>
-        <div class="qr-error-correction">
-            <span class="qr-error-label">Error Correction:</span>
-            <button type="button" class="qr-error-option" id="error-correction-l" data-value="L">L</button>
-            <button type="button" class="qr-error-option selected" id="error-correction-m" data-value="M">M</button>
-            <button type="button" class="qr-error-option" id="error-correction-q" data-value="Q">Q</button>
-            <button type="button" class="qr-error-option" id="error-correction-h" data-value="H">H</button>
+        <div class="customize-container">
+            <p class="qr-customize-label">Customize QR Code</p>
+            <div class="customize-inner-container">
+                <div class="foreground">
+                    <label>Foreground Color:</label>
+                    <div class="flex-container">
+                        <input type="color" id="fg-color" class="qr-color-picker" value="#000000" aria-label="Select QR code foreground color">
+                        <span class="fg-color-preview">#000000</span>
+                    </div>
+                </div>
+                <div class="background">
+                    <label>Background Color:</label>
+                    <div class="flex-container">
+                        <input type="color" id="bg-color" class="qr-color-picker" value="#ffffff" aria-label="Select QR code background color">
+                        <span class="bg-color-preview">#ffffff</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <button type="button" class="qr-generate-btn" id="generate-btn">Generate QR Code</button>
         <div class="qr-preview-container">
-            <div class="qr-preview-label">QR Code Preview:</div>
+            <div class="preview-download-header">
+                <p class="qr-preview-label">Preview & Download</p>
+                <img src="public/download.svg" alt="Download svg by Solar Icons" height="25">
+            </div>
             <div class="qr-preview">
                 <canvas id="qr-canvas" width="800" height="800" aria-label="Generated QR code"></canvas>
                 <div class="preview-text">QR  Area</div>
             </div>
-        </div>
-
-        <div class="qr-download-row">
-            <button type="button" class="qr-download-btn" id="download-png">Download PNG</button>
-            <button type="button" class="qr-download-btn" id="download-svg">Download SVG</button>
         </div>
     </div>
 
