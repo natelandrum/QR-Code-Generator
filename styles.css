@@ -12,6 +12,14 @@ body {
     display: none;
 }
 
+.qr-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    justify-content: center;
+}
+
 .qr-color-picker {
     width: 50px;
     height: 32px;
@@ -96,7 +104,7 @@ body {
 .qr-row {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
     margin-bottom: 16px;
 }
@@ -180,7 +188,7 @@ body {
 }
 
 .qr-type-selection button {
-    font-size: small;
+    font-size: 1rem;
 }
 
 .qr-type-option {
@@ -333,14 +341,20 @@ body {
     height: 220px;
 }
 
-/* Responsive for mobile */
-@media (max-width: 500px) {
-    .qr-container {
-        width: 98vw;
-        padding: 24px 8px 16px 8px;
+
+@media (max-width: 768px) {
+    .qr-type-selection {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
     }
-    .qr-preview {
-        width: 160px;
-        height: 160px;
+
+    .qr-type-selection button {
+        display: flex;
+        justify-content: space-around;
+        min-width: 100px;
+        max-width: 100px;
     }
 }
