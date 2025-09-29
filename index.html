@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="public/logo.png">
     <title>QR Code Generator</title>
     <script src="https://cdn.jsdelivr.net/npm/qrcode-generator/qrcode.js"></script>
 </head>
 <body>
     <div class="qr-container">
-        <h1 class="qr-title">QR Code Generator</h1>
+        <div class="qr-header">
+            <img src="public/logo.png" alt="QR Code icon" height="75" width="75">
+            <h1 class="qr-title">QR Code Generator</h1>
+        </div>
         <div class="qr-type-container">
             <p class="qr-type-label">QR Code Type</p>
             <div class="qr-type-selection">
@@ -43,14 +47,14 @@
 
                     <div class="qr-row">
                         <select id="protocol-select" class="qr-select" aria-label="QR code type">
-                            <option value="">Choose Encryption Type</option>
+                            <option value="">Encryption Type</option>
                             <option value="WEP">WEP</option>
                             <option value="WPA2">WPA/WPA2</option>
                             <option value="WPA3">WPA3</option>
                             <option value="nopass">nopass</option>
                         </select>
                         <div class="checkbox-container">
-                            <label for="hidden-ssid" class="qr-label">Hidden Wi-Fi:</label>
+                            <label for="hidden-ssid" class="qr-label">Hidden:</label>
                             <input type="checkbox" name="hidden-ssid" id="hidden-ssid" class="qr-checkbox">
                         </div>
                     </div>
